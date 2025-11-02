@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_prod
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: Root@123   # senha do root
+      MYSQL_DATABASE: mydb            # banco inicial
+      MYSQL_USER: user              # usuário padrão
+      MYSQL_PASSWORD: Senha@2580   # senha do usuário
+    ports:
+      - "3306:3306"                   # expõe porta para rede local/externa
+    volumes:
+      - mysql_data:/var/lib/mysql     # persiste dados mesmo se o container reiniciar
+
+volumes:
+  mysql_data:
